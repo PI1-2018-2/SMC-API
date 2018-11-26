@@ -34,12 +34,13 @@ def alarm(bot, job):
         notification = get_notification.get_notification()
         for user in list_user_cups:
             print(user['username'])
-            for aux in notification['objects']:
-                #if(aux['id'] == user['username']):
+            for i, aux in enumerate(notification['objects']):
+                if i == len(notification['objects']) - 1:
+                    print(aux)
                     message = "No seu copo nro "+str(aux['cup_id']) + " o remedio da particao "+str(aux['partition'])+" está "+str(aux['event'])+"\n"+str(aux['moment'])
                     bot.send_message(user['chat_id'], text="Olá temos novidades,")
                     bot.send_message(user['chat_id'], text=message)
-
+                    
 def echo(bot, update):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
