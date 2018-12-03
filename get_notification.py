@@ -3,7 +3,7 @@ import requests
 import time
 
 # api-endpoint 
-URL = "http://localhost:8000/api/get_record/"
+URL = "http://smartmedicinecup.herokuapp.com/api/get_record/"
 
 # JSON FORMAT
 # {
