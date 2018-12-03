@@ -37,10 +37,21 @@ def alarm(bot, job):
             for i, aux in enumerate(notification['objects']):
                 if i == len(notification['objects']) - 1:
                     print(aux)
-                    message = "No seu copo nro "+str(aux['cup_id']) + " o remedio da particao "+str(aux['partition'])+" está "+str(aux['event'])+"\n"+str(aux['moment'])
+                    if aux['event'] == 'taken':
+                        message = "No seu copo nro "+str(aux['cup_id']) + " um remédio foi tomado"
+                    if aux['event'] == 'not_taken':
+                        message = "No seu copo nro "+str(aux['cup_id']) + " alguém esqueceu de tomar um remédio"
+                    if aux['event'] == 'registered':
+                        message = "No seu copo nro "+str(aux['cup_id']) + " um novo alarme foi registrado"
+                    if aux['event'] == 'cancelled':
+                        message = "No seu copo nro "+str(aux['cup_id']) + " um alarme foi cancelado"
+
+                    
                     bot.send_message(user['chat_id'], text="Olá temos novidades,")
                     bot.send_message(user['chat_id'], text=message)
-                    
+
+
+
 def echo(bot, update):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
