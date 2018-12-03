@@ -1,6 +1,8 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 import logging
 import get_notification
+import get_contacts
+
 # Enable logging
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -37,18 +39,21 @@ def alarm(bot, job):
             for i, aux in enumerate(notification['objects']):
                 if i == len(notification['objects']) - 1:
                     print(aux)
-                    if aux['event'] == 'taken':
-                        message = "No seu copo nro "+str(aux['cup_id']) + " um remédio foi tomado"
-                    if aux['event'] == 'not_taken':
-                        message = "No seu copo nro "+str(aux['cup_id']) + " alguém esqueceu de tomar um remédio"
-                    if aux['event'] == 'registered':
-                        message = "No seu copo nro "+str(aux['cup_id']) + " um novo alarme foi registrado"
-                    if aux['event'] == 'cancelled':
-                        message = "No seu copo nro "+str(aux['cup_id']) + " um alarme foi cancelado"
+                    contacts = get_contacts.get_contacts()
+                    contacts = contacts['objects']
+                    for contact in contacts:
+                        if user['username'] == contact['username']:
+                            if aux['event'] == 'taken':
+                                message = "No seu copo nro "+str(aux['cup_id']) + " um remédio foi tomado"
+                            if aux['event'] == 'not_taken':
+                                message = "No seu copo nro "+str(aux['cup_id']) + " alguém esqueceu de tomar um remédio"
+                            if aux['event'] == 'registered':
+                                message = "No seu copo nro "+str(aux['cup_id']) + " um novo alarme foi registrado"
+                            if aux['event'] == 'cancelled':
+                                message = "No seu copo nro "+str(aux['cup_id']) + " um alarme foi cancelado"
 
-                    
-                    bot.send_message(user['chat_id'], text="Olá temos novidades,")
-                    bot.send_message(user['chat_id'], text=message)
+                            bot.send_message(user['chat_id'], text="Olá temos novidades,")
+                            bot.send_message(user['chat_id'], text=message)
 
 
 
