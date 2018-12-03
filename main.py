@@ -42,7 +42,7 @@ def alarm(bot, job):
                     contacts = get_contacts.get_contacts()
                     contacts = contacts['objects']
                     for contact in contacts:
-                        if user['username'] == contact['username']:
+                        if user['username'] == contact['username'] and contact['cup_id'] == aux['cup_id']:
                             if aux['event'] == 'taken':
                                 message = "No seu copo nro "+str(aux['cup_id']) + " um remédio foi tomado"
                             if aux['event'] == 'not_taken':
