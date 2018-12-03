@@ -3,7 +3,7 @@ import requests
 import time
 
 # api-endpoint 
-URL = "http://localhost:8000/notification/record/"
+URL = "http://localhost:8000/api/get_record/"
 
 # JSON FORMAT
 # {
@@ -27,7 +27,8 @@ def get_notification():
     # extracting data in json format 
     r = requests.get(url = URL)
     data = r.json()
-    print(data)
+    for aux in data:
+        print(aux)
     return data
     
 if __name__ == '__main__':

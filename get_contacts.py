@@ -3,7 +3,7 @@ import requests
 import time
 
 # api-endpoint 
-URL = "http://localhost:8000/notification/cup/"
+URL = "http://localhost:8000/api/get_contact/"
 
 # JSON FORMAT
 # {

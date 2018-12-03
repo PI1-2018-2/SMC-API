@@ -36,11 +36,10 @@ def alarm(bot, job):
         notification = get_notification.get_notification()
         for user in list_user_cups:
             print(user['username'])
-            for i, aux in enumerate(notification['objects']):
-                if i == len(notification['objects']) - 1:
+            for i, aux in enumerate(notification):
+                if i == len(notification) - 1:
                     print(aux)
                     contacts = get_contacts.get_contacts()
-                    contacts = contacts['objects']
                     for contact in contacts:
                         if user['username'] == contact['username'] and contact['cup_id'] == aux['cup_id']:
                             if aux['event'] == 'taken':
