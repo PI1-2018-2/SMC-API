@@ -44,13 +44,13 @@ def alarm(bot, job):
                     for contact in contacts:
                         if user['username'] == contact['username'] and contact['cup_id'] == aux['cup_id']:
                             if aux['event'] == 'taken':
-                                message = "No seu copo nro "+str(aux['cup_id']) + " um remédio foi tomado"
+                                message = "No seu copo nro "+str(aux['cup_id']) + " um remédio foi tomado"  + "\n" + str(aux['moment'])
                             if aux['event'] == 'not_taken':
-                                message = "No seu copo nro "+str(aux['cup_id']) + " alguém esqueceu de tomar um remédio"
+                                message = "No seu copo nro "+str(aux['cup_id']) + " alguém esqueceu de tomar um remédio" + "\n" + str(aux['moment'])
                             if aux['event'] == 'registered':
-                                message = "No seu copo nro "+str(aux['cup_id']) + " um novo alarme foi registrado"
+                                message = "No seu copo nro "+str(aux['cup_id']) + " um novo alarme foi registrado" + "\n" + str(aux['moment'])
                             if aux['event'] == 'cancelled':
-                                message = "No seu copo nro "+str(aux['cup_id']) + " um alarme foi cancelado"
+                                message = "No seu copo nro "+str(aux['cup_id']) + " um alarme foi cancelado" + "\n" + str(aux['moment'])
 
                             bot.send_message(user['chat_id'], text="Olá temos novidades,")
                             bot.send_message(user['chat_id'], text=message)
